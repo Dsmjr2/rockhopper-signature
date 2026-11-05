@@ -42,7 +42,7 @@
       <div class="field"><label for="name">Name</label><input id="name" autocomplete="name" placeholder="Jane Smith"></div>
       <div class="field"><label for="title">Title <span class="opt">(optional)</span></label><input id="title" autocomplete="organization-title" placeholder="Project Manager"></div>
       <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="770.555.0123"></div>
-      <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" inputmode="email" placeholder="jane@rockhopper.tech"></div>
+      <div class="field"><label for="email">Email <span class="opt">(optional)</span></label><input id="email" type="email" autocomplete="email" inputmode="email" placeholder="jane@rockhopper.tech"></div>
     </form>
     <div class="card">
       <div class="preview" id="preview"></div>
@@ -61,6 +61,7 @@
 <script>
 const LOGO = 'https://dsmjr2.github.io/rockhopper-signature/logo.gif';
 const SITE = 'https://rockhopper.tech';
+const LINKEDIN = 'https://www.linkedin.com/company/223163/';
 const INK = '#111111', OR = '#EB4124', GREY = '#5B6066';
 const F = 'font-family:Arial,Helvetica,sans-serif;';
 const $ = id => document.getElementById(id);
@@ -89,7 +90,7 @@ function signature(v) {
     `<td valign="middle" style="border-left:2px solid ${OR};padding:0 0 0 12px;">` +
     `<div style="${F}font-size:18px;line-height:22px;font-weight:bold;color:${INK};">${esc(v.name || 'Your Name')}</div>` +
     (v.title ? `<div style="${F}font-size:13px;line-height:18px;color:${INK};padding-top:2px;">${esc(v.title)}</div>` : '') +
-    `<div style="${F}font-size:13px;line-height:18px;padding:2px 0 8px;"><a href="${SITE}" target="_blank" style="color:${OR};text-decoration:underline;">Rockhopper.Tech</a></div>` +
+    `<div style="${F}font-size:13px;line-height:18px;padding:2px 0 8px;white-space:nowrap;"><a href="${SITE}" target="_blank" style="color:${OR};text-decoration:underline;">Rockhopper.Tech</a><br><a href="${LINKEDIN}" target="_blank" style="color:${OR};text-decoration:underline;">LinkedIn</a></div>` +
     (rows ? `<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;">${rows}</table>` : '') +
     `</td></tr>` +
     `<tr><td colspan="2" style="padding-top:12px;"><table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;border-top:1px solid #E3E6EA;width:100%;"><tr>` +
@@ -98,7 +99,7 @@ function signature(v) {
 }
 
 function plain(v) {
-  return [v.name, v.title, 'Rockhopper.Tech  ' + SITE, v.phone && v.phone.text, v.email].filter(Boolean).join('\n') +
+  return [v.name, v.title, 'Rockhopper.Tech  ' + SITE, 'LinkedIn  ' + LINKEDIN, v.phone && v.phone.text, v.email].filter(Boolean).join('\n') +
     '\n\nCelebrating 35+ years of IT support and software development success\n' +
     'Rockhopper Tech is a registered trade name for Computer Alli, Inc., a Georgia corporation.';
 }
